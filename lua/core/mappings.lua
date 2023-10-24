@@ -16,7 +16,7 @@ M.general = {
   },
 
   n = {
-    ["<Esc>"] = { ":noh <CR>", "Clear highlights" },
+    ["<Esc>"] = { "<cmd> noh <CR>", "Clear highlights" },
     -- switch between windows
     ["<C-h>"] = { "<C-w>h", "Window left" },
     ["<C-l>"] = { "<C-w>l", "Window right" },
@@ -71,6 +71,8 @@ M.general = {
     ["<C-b>"] = { "^", "Beginning of line" },
     ["<C-e>"] = { "<End>", "End of line" },
 
+    ["<"] = { "<gv", "Indent line" },
+    [">"] = { ">gv", "Indent line" },
   },
 
   x = {
@@ -201,7 +203,7 @@ M.lspconfig = {
       "LSP references",
     },
 
-    ["<leader>f"] = {
+    ["<leader>lf"] = {
       function()
         vim.diagnostic.open_float { border = "rounded" }
       end,
@@ -248,6 +250,15 @@ M.lspconfig = {
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
       end,
       "List workspace folders",
+    },
+  },
+
+  v = {
+    ["<leader>ca"] = {
+      function()
+        vim.lsp.buf.code_action()
+      end,
+      "LSP code action",
     },
   },
 }
