@@ -28,6 +28,18 @@ local default_plugins = {
       require("nvterm").setup(opts)
     end,
   },
+  {
+    "rose-pine/neovim",
+    lazy=false,
+    priority=1000,
+    opts = function()
+      return require("plugins.configs.rose-pine")
+    end,
+    config = function(_, opts)
+      require("rose-pine").setup{opts}
+      -- vim.cmd[[colorscheme rose-pine]]
+    end
+  },
 
   {
     "NvChad/nvim-colorizer.lua",

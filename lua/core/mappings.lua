@@ -23,6 +23,12 @@ M.general = {
     ["<C-j>"] = { "<C-w>j", "Window down" },
     ["<C-k>"] = { "<C-w>k", "Window up" },
 
+    ["<C-d>"] = { "<C-d>zz", "Page down, cursor middle of screen" },
+    ["<C-u>"] = { "<C-u>zz", "Page up, cursor middle of screen" }, 
+
+    ["<C-b>"] = { "<ESC>^", "Beginning of line" },
+    ["<C-e>"] = { "<End>", "End of line" },
+
     -- save
     ["<C-s>"] = { "<cmd> w <CR>", "Save file" },
 
@@ -61,6 +67,10 @@ M.general = {
   v = {
     ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
+    -- Beginning and end of lines
+    ["<C-b>"] = { "^", "Beginning of line" },
+    ["<C-e>"] = { "<End>", "End of line" },
+
   },
 
   x = {
@@ -106,7 +116,7 @@ M.comment = {
 
   -- toggle comment in both modes
   n = {
-    ["<leader>/"] = {
+    ["<leader>co"] = {
       function()
         require("Comment.api").toggle.linewise.current()
       end,
@@ -115,7 +125,7 @@ M.comment = {
   },
 
   v = {
-    ["<leader>/"] = {
+    ["<leader>co"] = {
       "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
       "Toggle comment",
     },
